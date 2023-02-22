@@ -41,7 +41,6 @@ android {
 dependencies {
     kapt DaggerHilt.hiltCompiler
     implementation DaggerHilt.hiltAndroid
-    implementation Desugaring.coreLibraryDesugaring
 
     testImplementation Testing.junit4
     testImplementation Testing.junitAndroidExt
