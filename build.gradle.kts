@@ -9,3 +9,7 @@ plugins {
     id(Build.androidLibrary).version(Build.androidVersion).apply(false)
     id(Build.kotlin).version(Kotlin.version).apply(false)
 }
+
+tasks.register("clean", Delete::class) {
+    delete(rootProject.buildDir)
+}
