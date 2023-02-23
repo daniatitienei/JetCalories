@@ -1,6 +1,7 @@
 package com.atitienei_daniel.onboarding_presentation.components
 
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -10,6 +11,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.dp
+import java.util.Locale
 
 @Composable
 fun SelectableButton(
@@ -23,15 +26,17 @@ fun SelectableButton(
 ) {
 
     val backgroundColor by animateColorAsState(targetValue = if (isSelected) color else MaterialTheme.colorScheme.background)
-    val textColor by animateColorAsState(targetValue = if (isSelected) selectedTextColor else MaterialTheme.colorScheme.onPrimaryContainer)
+    val textColor by animateColorAsState(targetValue = if (isSelected) selectedTextColor else MaterialTheme.colorScheme.onBackground)
 
     Button(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(
             containerColor = backgroundColor,
             contentColor = textColor
-        )
+        ),
+        border = BorderStroke(width = 2.dp, color = color),
+        modifier = modifier
     ) {
-        Text(text = text, style = textStyle)
+        Text(text = text.capitalize(Locale.getDefault()), style = textStyle)
     }
 }

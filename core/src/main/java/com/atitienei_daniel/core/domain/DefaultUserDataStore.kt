@@ -10,10 +10,9 @@ import com.atitienei_daniel.core.domain.model.GoalType
 import com.atitienei_daniel.core.domain.model.UserInfo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
 
-class DefaultUserDataStore @Inject constructor(
+class DefaultUserDataStore(
     private val context: Context
 ) : UserDataStore {
 

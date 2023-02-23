@@ -1,20 +1,22 @@
 package com.atitienei_daniel.jetcalories.di
 
+import android.content.Context
 import com.atitienei_daniel.core.domain.DefaultUserDataStore
 import com.atitienei_daniel.core.domain.data_store.UserDataStore
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class DataStoreModule {
+object AppModule {
 
-    @Binds
+    @Provides
     @Singleton
-    abstract fun bindsUserDataStore(
-        defaultUserDataStore: DefaultUserDataStore
-    ): UserDataStore
+    fun providesUserDataStore(
+        @ApplicationContext context: Context
+    ): UserDataStore = DefaultUserDataStore(context)
 }
