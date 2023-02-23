@@ -73,11 +73,11 @@ fun WeightScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "What's your height?", style = MaterialTheme.typography.titleLarge)
+            Text(text = "What's your weight?", style = MaterialTheme.typography.titleLarge)
             UnitTextField(
                 value = viewModel.weight,
                 onValueChange = viewModel::onWeightValueChange,
-                unit = "cm"
+                unit = "kg"
             )
         }
     }

@@ -9,8 +9,10 @@ import androidx.navigation.compose.rememberNavController
 import com.atitienei_daniel.core.navigation.Route
 import com.atitienei_daniel.jetcalories.navigation.navigate
 import com.atitienei_daniel.jetcalories.ui.theme.JetCaloriesTheme
+import com.atitienei_daniel.onboarding_presentation.activity_level.ActivityLevelScreen
 import com.atitienei_daniel.onboarding_presentation.age.AgeScreen
 import com.atitienei_daniel.onboarding_presentation.gender.GenderScreen
+import com.atitienei_daniel.onboarding_presentation.goal.GoalScreen
 import com.atitienei_daniel.onboarding_presentation.height.HeightScreen
 import com.atitienei_daniel.onboarding_presentation.weight.WeightScreen
 import com.atitienei_daniel.onboarding_presentation.welcome.WelcomeScreen
@@ -27,14 +29,18 @@ class MainActivity : ComponentActivity() {
                     composable(Route.welcome) {
                         WelcomeScreen(onNavigate = navController::navigate)
                     }
-                    composable(Route.activity) {}
+                    composable(Route.activityLevel) {
+                        ActivityLevelScreen(onNavigate = navController::navigate)
+                    }
                     composable(Route.age) {
                         AgeScreen(onNavigate = navController::navigate)
                     }
                     composable(Route.height) {
                         HeightScreen(onNavigate = navController::navigate)
                     }
-                    composable(Route.goal) {}
+                    composable(Route.goal) {
+                        GoalScreen(onNavigate = navController::navigate)
+                    }
                     composable(Route.gender) {
                         GenderScreen(onNavigate = navController::navigate)
                     }
