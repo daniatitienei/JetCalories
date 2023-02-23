@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.atitienei_daniel.onboarding_presentation.gender
+package com.atitienei_daniel.onboarding_presentation.activity_level
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,18 +21,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.atitienei_daniel.core.domain.model.Gender
+import com.atitienei_daniel.core.domain.model.ActivityLevel
 import com.atitienei_daniel.core.util.UiEvent
 import com.atitienei_daniel.core_ui.LocalSpacing
 import com.atitienei_daniel.onboarding_presentation.components.SelectableButton
 
 @Composable
-fun GenderScreen(
+fun ActivityLevelScreen(
     onNavigate: (UiEvent.Navigate) -> Unit,
-    viewModel: GenderViewModel = hiltViewModel()
+    viewModel: ActivityLevelViewModel = hiltViewModel()
 ) {
+    val spacing = LocalSpacing.current
+
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
@@ -41,21 +42,6 @@ fun GenderScreen(
             }
         }
     }
-
-    GenderScreenContent(
-        selectedGender = viewModel.selectedGender,
-        onNextClick = viewModel::onNextClick,
-        onGenderClick = viewModel::onGenderClick
-    )
-}
-
-@Composable
-private fun GenderScreenContent(
-    selectedGender: Gender,
-    onNextClick: () -> Unit,
-    onGenderClick: (Gender) -> Unit
-) {
-    val spacing = LocalSpacing.current
 
     Scaffold(
         floatingActionButton = {
@@ -68,7 +54,7 @@ private fun GenderScreenContent(
                     )
                 },
                 onClick = {
-                    onNextClick()
+                    viewModel.onNextClick()
                 }
             )
         }
@@ -80,41 +66,41 @@ private fun GenderScreenContent(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "What's your gender?")
-            Spacer(modifier = Modifier.height(spacing.spaceMedium))
+            Text(text = "What's your activity level?")
+            Spacer(modifier = androidx.compose.ui.Modifier.height(spacing.spaceMedium))
             Row(
                 horizontalArrangement = Arrangement.spacedBy(spacing.spaceSmall)
             ) {
                 SelectableButton(
-                    text = Gender.Male.name,
-                    isSelected = selectedGender is Gender.Male,
+                    text = "Low",
+                    isSelected = viewModel.selectedGoalType is ActivityLevel.Low,
                     color = MaterialTheme.colorScheme.primaryContainer,
                     selectedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
                     onClick = {
-                        onGenderClick(Gender.Male)
+                        viewModel.onActivityLevelClick(ActivityLevel.Low)
                     }
                 )
 
                 SelectableButton(
-                    text = Gender.Female.name,
-                    isSelected = selectedGender is Gender.Female,
+                    text = "Medium",
+                    isSelected = viewModel.selectedGoalType is ActivityLevel.Medium,
                     color = MaterialTheme.colorScheme.primaryContainer,
                     selectedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
                     onClick = {
-                        onGenderClick(Gender.Female)
+                        viewModel.onActivityLevelClick(ActivityLevel.Medium)
+                    }
+                )
+
+                SelectableButton(
+                    text = "High",
+                    isSelected = viewModel.selectedGoalType is ActivityLevel.High,
+                    color = MaterialTheme.colorScheme.primaryContainer,
+                    selectedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    onClick = {
+                        viewModel.onActivityLevelClick(ActivityLevel.High)
                     }
                 )
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun GenderScreenPreview() {
-    GenderScreenContent(
-        selectedGender = Gender.Male,
-        onGenderClick = {},
-        onNextClick = {}
-    )
 }
