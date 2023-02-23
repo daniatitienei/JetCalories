@@ -11,6 +11,8 @@ import com.atitienei_daniel.jetcalories.navigation.navigate
 import com.atitienei_daniel.jetcalories.ui.theme.JetCaloriesTheme
 import com.atitienei_daniel.onboarding_presentation.age.AgeScreen
 import com.atitienei_daniel.onboarding_presentation.gender.GenderScreen
+import com.atitienei_daniel.onboarding_presentation.height.HeightScreen
+import com.atitienei_daniel.onboarding_presentation.weight.WeightScreen
 import com.atitienei_daniel.onboarding_presentation.welcome.WelcomeScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,7 +31,9 @@ class MainActivity : ComponentActivity() {
                     composable(Route.age) {
                         AgeScreen(onNavigate = navController::navigate)
                     }
-                    composable(Route.height) {}
+                    composable(Route.height) {
+                        HeightScreen(onNavigate = navController::navigate)
+                    }
                     composable(Route.goal) {}
                     composable(Route.gender) {
                         GenderScreen(onNavigate = navController::navigate)
@@ -37,7 +41,9 @@ class MainActivity : ComponentActivity() {
                     composable(Route.nutrientGoal) {}
                     composable(Route.search) {}
                     composable(Route.trackerOverview) {}
-                    composable(Route.weight) {}
+                    composable(Route.weight) {
+                        WeightScreen(onNavigate = navController::navigate)
+                    }
                 }
             }
         }
