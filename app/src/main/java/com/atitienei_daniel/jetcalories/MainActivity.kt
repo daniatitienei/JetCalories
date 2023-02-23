@@ -10,7 +10,9 @@ import com.atitienei_daniel.core.navigation.Route
 import com.atitienei_daniel.jetcalories.navigation.navigate
 import com.atitienei_daniel.jetcalories.ui.theme.JetCaloriesTheme
 import com.atitienei_daniel.onboarding_presentation.welcome.WelcomeScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
