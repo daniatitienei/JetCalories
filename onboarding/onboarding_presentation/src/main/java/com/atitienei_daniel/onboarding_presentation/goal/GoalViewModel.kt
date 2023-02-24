@@ -33,7 +33,7 @@ class GoalViewModel @Inject constructor(
     fun onNextClick() {
         viewModelScope.launch {
             userDataStore.saveGoalType(type = selectedGoalType)
-            _uiEvent.send(UiEvent.Navigate(route = Route.goal))
+            _uiEvent.send(UiEvent.Navigate(route = Route.nutrientGoal))
         }
     }
 }
