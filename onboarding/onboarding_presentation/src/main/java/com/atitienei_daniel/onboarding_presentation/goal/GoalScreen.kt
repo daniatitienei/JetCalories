@@ -72,7 +72,7 @@ fun GoalScreen(
                 horizontalArrangement = Arrangement.spacedBy(spacing.spaceSmall)
             ) {
                 SelectableButton(
-                    text = GoalType.LoseWeight.name,
+                    text = "Lose weight",
                     isSelected = viewModel.selectedGoalType is GoalType.LoseWeight,
                     color = MaterialTheme.colorScheme.primaryContainer,
                     selectedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
@@ -82,7 +82,7 @@ fun GoalScreen(
                 )
 
                 SelectableButton(
-                    text = GoalType.KeepWeight.name,
+                    text = "Keep weight",
                     isSelected = viewModel.selectedGoalType is GoalType.KeepWeight,
                     color = MaterialTheme.colorScheme.primaryContainer,
                     selectedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
@@ -92,7 +92,7 @@ fun GoalScreen(
                 )
 
                 SelectableButton(
-                    text = GoalType.GainWeight.name,
+                    text = "Gain weight",
                     isSelected = viewModel.selectedGoalType is GoalType.GainWeight,
                     color = MaterialTheme.colorScheme.primaryContainer,
                     selectedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,

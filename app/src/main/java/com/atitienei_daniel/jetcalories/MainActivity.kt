@@ -14,6 +14,7 @@ import com.atitienei_daniel.onboarding_presentation.age.AgeScreen
 import com.atitienei_daniel.onboarding_presentation.gender.GenderScreen
 import com.atitienei_daniel.onboarding_presentation.goal.GoalScreen
 import com.atitienei_daniel.onboarding_presentation.height.HeightScreen
+import com.atitienei_daniel.onboarding_presentation.nutrient_goal.NutrientGoalScreen
 import com.atitienei_daniel.onboarding_presentation.weight.WeightScreen
 import com.atitienei_daniel.onboarding_presentation.welcome.WelcomeScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,7 +45,9 @@ class MainActivity : ComponentActivity() {
                     composable(Route.gender) {
                         GenderScreen(onNavigate = navController::navigate)
                     }
-                    composable(Route.nutrientGoal) {}
+                    composable(Route.nutrientGoal) {
+                        NutrientGoalScreen(onNavigate = navController::navigate)
+                    }
                     composable(Route.search) {}
                     composable(Route.trackerOverview) {}
                     composable(Route.weight) {
