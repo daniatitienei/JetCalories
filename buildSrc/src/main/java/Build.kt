@@ -1,6 +1,8 @@
 object Build {
     const val androidVersion = "8.1.0-alpha06"
 
+    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.10"
+
     const val androidApplication = "com.android.application"
     const val androidLibrary = "com.android.library"
 
