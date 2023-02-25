@@ -1,5 +1,6 @@
 package com.atitienei_daniel.core.domain.data_store
 
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.floatPreferencesKey
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -23,7 +24,11 @@ interface UserDataStore {
 
     fun loadUserInfo(): Flow<UserInfo>
 
+    suspend fun saveShouldShowOnBoarding(shouldShow: Boolean)
+    fun loadShouldShowOnBoarding(): Flow<Boolean>
+
     companion object {
+        val shouldShowOnBoarding = booleanPreferencesKey("should_show")
         val genderKey = stringPreferencesKey("gender")
         val ageKey = intPreferencesKey("age")
         val weightKey = floatPreferencesKey("weight")

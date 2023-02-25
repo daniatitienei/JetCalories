@@ -1,4 +1,4 @@
-package com.atitienei_daniel.core.domain
+package com.atitienei_daniel.core.data.data_store
 
 import android.content.Context
 import androidx.datastore.preferences.core.edit
@@ -90,5 +90,17 @@ class DefaultUserDataStore(
                 weight = preferences[UserDataStore.weightKey] ?: -1f
             )
         }
+
+    override suspend fun saveShouldShowOnBoarding(shouldShow: Boolean) {
+        context.dataStore.edit { settings ->
+            settings[UserDataStore.shouldShowOnBoarding] = shouldShow
+        }
+    }
+
+    override fun loadShouldShowOnBoarding(): Flow<Boolean> =
+        context.dataStore.data
+            .map { preferences ->
+                preferences[UserDataStore.shouldShowOnBoarding] ?: true
+            }
 }
 
