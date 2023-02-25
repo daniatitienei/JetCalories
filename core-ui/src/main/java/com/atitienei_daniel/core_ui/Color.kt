@@ -1,4 +1,4 @@
-package com.atitienei_daniel.jetcalories.ui.theme
+package com.atitienei_daniel.core_ui
 
 import androidx.compose.ui.graphics.Color
 

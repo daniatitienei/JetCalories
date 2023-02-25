@@ -2,6 +2,7 @@ buildscript {
     dependencies {
         classpath(Build.hiltAndroidGradlePlugin)
         classpath(Build.androidTools)
+        classpath(Build.kotlinGradlePlugin)
     }
 }
 // Top-level build file where you can add configuration options common to all sub-projects/modules.

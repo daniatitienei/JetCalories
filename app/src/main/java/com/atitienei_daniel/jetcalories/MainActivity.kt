@@ -17,6 +17,7 @@ import com.atitienei_daniel.onboarding_presentation.height.HeightScreen
 import com.atitienei_daniel.onboarding_presentation.nutrient_goal.NutrientGoalScreen
 import com.atitienei_daniel.onboarding_presentation.weight.WeightScreen
 import com.atitienei_daniel.onboarding_presentation.welcome.WelcomeScreen
+import com.atitienei_daniel.tracker_presentation.overview.TrackerOverviewScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,7 +27,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             JetCaloriesTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = Route.welcome) {
+                NavHost(navController = navController, startDestination = Route.trackerOverview) {
                     composable(Route.welcome) {
                         WelcomeScreen(onNavigate = navController::navigate)
                     }
@@ -49,7 +50,9 @@ class MainActivity : ComponentActivity() {
                         NutrientGoalScreen(onNavigate = navController::navigate)
                     }
                     composable(Route.search) {}
-                    composable(Route.trackerOverview) {}
+                    composable(Route.trackerOverview) {
+                        TrackerOverviewScreen(onNavigate = navController::navigate)
+                    }
                     composable(Route.weight) {
                         WeightScreen(onNavigate = navController::navigate)
                     }
