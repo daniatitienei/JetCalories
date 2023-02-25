@@ -37,6 +37,6 @@ fun SelectableButton(
         border = BorderStroke(width = 2.dp, color = color),
         modifier = modifier
     ) {
-        Text(text = text.capitalize(Locale.getDefault()), style = textStyle)
+        Text(text = text.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() }, style = textStyle)
     }
 }

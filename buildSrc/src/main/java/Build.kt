@@ -6,7 +6,7 @@ object Build {
 
     const val kotlin = "org.jetbrains.kotlin.android"
 
-    const val androidTools = "com.android.tools.build:gradle:7.2.0"
+    const val androidTools = "com.android.tools.build:gradle:7.4.1"
 
     private const val hiltAndroidGradlePluginVersion = "2.44"
     const val hiltAndroidGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$hiltAndroidGradlePluginVersion"
