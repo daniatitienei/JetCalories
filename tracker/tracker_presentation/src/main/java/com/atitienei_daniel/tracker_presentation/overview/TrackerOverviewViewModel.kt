@@ -86,7 +86,7 @@ class TrackerOverviewViewModel @Inject constructor(
                             .map { currentMeal ->
                                 if (currentMeal == event.meal) {
                                     currentMeal.copy(
-                                        isExpanded = true
+                                        isExpanded = !currentMeal.isExpanded
                                     )
                                 } else currentMeal
                             }
