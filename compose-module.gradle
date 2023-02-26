@@ -54,6 +54,7 @@ dependencies {
     implementation Compose.viewModelLifecycle
     implementation Compose.lifecycleRuntime
     implementation Compose.activityCompose
+    implementation Compose.icons
 
     kapt DaggerHilt.hiltCompiler
     implementation DaggerHilt.hiltAndroid
