@@ -18,6 +18,7 @@ import com.atitienei_daniel.onboarding_presentation.nutrient_goal.NutrientGoalSc
 import com.atitienei_daniel.onboarding_presentation.weight.WeightScreen
 import com.atitienei_daniel.onboarding_presentation.welcome.WelcomeScreen
 import com.atitienei_daniel.tracker_presentation.overview.TrackerOverviewScreen
+import com.atitienei_daniel.tracker_presentation.search.SearchScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -49,7 +50,24 @@ class MainActivity : ComponentActivity() {
                     composable(Route.nutrientGoal) {
                         NutrientGoalScreen(onNavigate = navController::navigate)
                     }
-                    composable(Route.search) {}
+                    composable(
+                        route = Route.search,
+                    ) { backStackEntry ->
+                        val mealName = backStackEntry.arguments?.getString("mealName")!!
+                        val dayOfMonth = backStackEntry.arguments?.getInt("dayOfMonth")!!
+                        val month = backStackEntry.arguments?.getInt("month")!!
+                        val year = backStackEntry.arguments?.getInt("year")!!
+
+                        SearchScreen(
+                            mealName = mealName,
+                            dayOfMonth = dayOfMonth,
+                            month = month,
+                            year = year,
+                            onNavigateUp = {
+                                navController.popBackStack()
+                            }
+                        )
+                    }
                     composable(Route.trackerOverview) {
                         TrackerOverviewScreen(onNavigate = navController::navigate)
                     }
