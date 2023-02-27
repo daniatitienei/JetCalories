@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.atitienei_daniel.core.domain.data_store.UserDataStore
-import com.atitienei_daniel.core.navigation.Route
 import com.atitienei_daniel.core.util.UiEvent
 import com.atitienei_daniel.tracker_domain.use_case.TrackerUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -51,20 +50,6 @@ class TrackerOverviewViewModel @Inject constructor(
 
     fun onEvent(event: TrackerOverviewEvent) {
         when (event) {
-            is TrackerOverviewEvent.OnAddFoodClick -> {
-                viewModelScope.launch {
-                    _uiEvent.send(
-                        UiEvent.Navigate(
-                            route = Route.search
-                                .replace("{mealName}", event.meal.mealType.name)
-                                .replace("{dayOfMonth}", _uiState.value.date.dayOfMonth.toString())
-                                .replace("{month}", _uiState.value.date.monthValue.toString())
-                                .replace("{year}", _uiState.value.date.year.toString())
-                        )
-                    )
-                }
-            }
-
             TrackerOverviewEvent.OnNextDayClick -> {
                 _uiState.update { state ->
                     state.copy(

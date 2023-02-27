@@ -3,7 +3,6 @@ package com.atitienei_daniel.onboarding_presentation.nutrient_goal
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.atitienei_daniel.core.domain.data_store.UserDataStore
-import com.atitienei_daniel.core.navigation.Route
 import com.atitienei_daniel.core.util.UiEvent
 import com.atitienei_daniel.onboarding_domain.use_case.ValidateNutrients
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -75,7 +74,7 @@ class NutrientGoalViewModel @Inject constructor(
                                 userDataStore.saveFatRatio(result.fatRatio)
 
                                 viewModelScope.launch {
-                                    _uiEvent.send(UiEvent.Navigate(route = Route.trackerOverview))
+                                    _uiEvent.send(UiEvent.Navigate)
                                 }
                             }
                         }

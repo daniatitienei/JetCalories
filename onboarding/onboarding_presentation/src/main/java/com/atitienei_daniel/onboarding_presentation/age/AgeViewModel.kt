@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.atitienei_daniel.core.domain.data_store.UserDataStore
 import com.atitienei_daniel.core.domain.use_case.FilterOutDigits
-import com.atitienei_daniel.core.navigation.Route
 import com.atitienei_daniel.core.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -41,7 +40,8 @@ class AgeViewModel @Inject constructor(
             }
 
             userDataStore.saveAge(ageNumber)
-            _uiEvent.send(UiEvent.Navigate(route = Route.height))
+            _uiEvent.send(UiEvent.Navigate)
+
         }
     }
 }

@@ -23,14 +23,11 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.atitienei_daniel.core.util.UiEvent
 import com.atitienei_daniel.core_ui.LocalSpacing
 import com.atitienei_daniel.tracker_presentation.overview.components.DaySelector
 import com.atitienei_daniel.tracker_presentation.overview.components.ExpandableMeal
@@ -39,22 +36,12 @@ import com.atitienei_daniel.tracker_presentation.overview.components.TrackedFood
 
 @Composable
 fun TrackerOverviewScreen(
-    onNavigate: (UiEvent.Navigate) -> Unit,
+    onNavigateToSearch: (String, Int, Int, Int) -> Unit,
     viewModel: TrackerOverviewViewModel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val userInfo by viewModel.userInfo.collectAsStateWithLifecycle()
-    val context = LocalContext.current
-
-    LaunchedEffect(key1 = context) {
-        viewModel.uiEvent.collect { event ->
-            when(event) {
-                is UiEvent.Navigate -> onNavigate(event)
-                else -> Unit
-            }
-        }
-    }
 
     Scaffold { innerPadding ->
         LazyColumn(
@@ -96,7 +83,10 @@ fun TrackerOverviewScreen(
                             .fillMaxWidth()
                             .padding(horizontal = spacing.spaceSmall)
                     ) {
-                        uiState.trackedFoods.forEach { trackedFood ->
+                        val foods = uiState.trackedFoods.filter {
+                            it.mealType == meal.mealType
+                        }
+                        foods.forEach { trackedFood ->
                             TrackedFoodItem(
                                 food = trackedFood,
                                 onDeleteClick = {
@@ -109,7 +99,12 @@ fun TrackerOverviewScreen(
                         }
                         OutlinedButton(
                             onClick = {
-                                viewModel.onEvent(TrackerOverviewEvent.OnAddFoodClick(meal))
+                                onNavigateToSearch(
+                                    meal.name,
+                                    uiState.date.dayOfMonth,
+                                    uiState.date.monthValue,
+                                    uiState.date.year
+                                )
                             },
                             border = BorderStroke(
                                 width = 1.dp,
