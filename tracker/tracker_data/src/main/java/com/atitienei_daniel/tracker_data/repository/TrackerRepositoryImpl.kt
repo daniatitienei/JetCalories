@@ -1,5 +1,6 @@
 package com.atitienei_daniel.tracker_data.repository
 
+import android.util.Log
 import com.atitienei_daniel.tracker_data.local.dao.TrackerDao
 import com.atitienei_daniel.tracker_data.mapper.toEntity
 import com.atitienei_daniel.tracker_data.mapper.toTrackableFood
@@ -50,6 +51,7 @@ class TrackerRepositoryImpl @Inject constructor(
             month = localDate.monthValue,
             year = localDate.year
         ).map { entities ->
+            Log.d("entities", entities.toString())
             entities.map { it.toTrackedFood() }
         }
 }

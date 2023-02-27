@@ -44,6 +44,7 @@ fun TrackerOverviewScreen(
 ) {
     val spacing = LocalSpacing.current
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val userInfo by viewModel.userInfo.collectAsStateWithLifecycle()
     val context = LocalContext.current
 
     LaunchedEffect(key1 = context) {

@@ -1,6 +1,5 @@
 package com.atitienei_daniel.tracker_presentation.overview.components
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
@@ -12,7 +11,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,26 +33,20 @@ fun NutrientBarInfo(
 ) {
     val background = MaterialTheme.colorScheme.background
     val goalExceededColor = MaterialTheme.colorScheme.error
-    val arcColor by animateColorAsState(
-        targetValue = if (value <= goal) {
-            color
-        } else {
-            goalExceededColor
-        }
-    )
+
     val angleRatio = remember {
         Animatable(0f)
     }
-
     LaunchedEffect(key1 = value) {
         angleRatio.animateTo(
             targetValue = if (goal > 0) {
-                (value / goal).toFloat()
+                value / goal.toFloat()
             } else 0f,
-            animationSpec = tween(300)
+            animationSpec = tween(
+                durationMillis = 300
+            )
         )
     }
-
     Box(
         modifier = modifier,
         contentAlignment = Alignment.Center
@@ -62,10 +54,10 @@ fun NutrientBarInfo(
         Canvas(
             modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(1f)
+                .aspectRatio(1f),
         ) {
             drawArc(
-                color = background,
+                color = if (value <= goal) background else goalExceededColor,
                 startAngle = 0f,
                 sweepAngle = 360f,
                 useCenter = false,
@@ -75,10 +67,9 @@ fun NutrientBarInfo(
                     cap = StrokeCap.Round
                 )
             )
-
             if (value <= goal) {
                 drawArc(
-                    color = arcColor,
+                    color = color,
                     startAngle = 90f,
                     sweepAngle = 360f * angleRatio.value,
                     useCenter = false,

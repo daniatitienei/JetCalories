@@ -11,5 +11,5 @@ object Route {
     const val goal = "goal"
 
     const val trackerOverview = "tracker_overview"
-    const val search = "search?mealName={mealName}&dayOfMonth={dayOfMonth}&month={month}&year={year}"
+    const val search = "search/{mealName}/{dayOfMonth}/{month}/{year}"
 }

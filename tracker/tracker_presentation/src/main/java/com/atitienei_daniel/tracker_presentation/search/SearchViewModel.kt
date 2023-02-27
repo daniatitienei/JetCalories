@@ -103,7 +103,7 @@ class SearchViewModel @Inject constructor(
 
     private fun trackFood(event: SearchEvent.OnTrackFoodClick) {
         viewModelScope.launch {
-            val uiState = _uiState.value.trackableFood.find { it.food.name == event.food.name }
+            val uiState = _uiState.value.trackableFood.find { it.food == event.food }
             trackerUseCases.trackFood.execute(
                 food = uiState?.food ?: return@launch,
                 amount = uiState.amount.toIntOrNull() ?: return@launch,

@@ -37,7 +37,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
@@ -60,7 +59,6 @@ fun SearchScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val spacing = LocalSpacing.current
-    val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
 
     val snackBarHostState = remember {
@@ -113,6 +111,7 @@ fun SearchScreen(
                         viewModel.onEvent(SearchEvent.OnSearch)
                     }
                 ),
+                singleLine = true,
                 placeholder = {
                     Text(text = "Search...")
                 },
@@ -137,6 +136,7 @@ fun SearchScreen(
                             )
                         },
                         onTrack = {
+                            keyboardController?.hide()
                             viewModel.onEvent(
                                 SearchEvent.OnTrackFoodClick(
                                     food = food.food,

@@ -1,5 +1,6 @@
 package com.atitienei_daniel.tracker_domain.use_case
 
+import android.util.Log
 import com.atitienei_daniel.tracker_domain.model.MealType
 import com.atitienei_daniel.tracker_domain.model.TrackableFood
 import com.atitienei_daniel.tracker_domain.model.TrackedFood
@@ -16,6 +17,7 @@ class TrackFood(
         mealType: MealType,
         date: LocalDate
     ) {
+        Log.d("trackFood", food.toString())
         repository.insertTrackedFood(
             food = TrackedFood(
                 name = food.name,
