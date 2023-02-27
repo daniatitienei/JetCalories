@@ -108,6 +108,7 @@ fun SearchScreen(
                 ),
                 keyboardActions = KeyboardActions(
                     onSearch = {
+                        keyboardController?.hide()
                         viewModel.onEvent(SearchEvent.OnSearch)
                     }
                 ),

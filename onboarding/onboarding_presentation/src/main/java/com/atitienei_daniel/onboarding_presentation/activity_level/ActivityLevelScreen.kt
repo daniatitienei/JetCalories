@@ -29,7 +29,7 @@ import com.atitienei_daniel.onboarding_presentation.components.SelectableButton
 
 @Composable
 fun ActivityLevelScreen(
-    onNavigate: (UiEvent.Navigate) -> Unit,
+    onNextClick: () -> Unit,
     viewModel: ActivityLevelViewModel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
@@ -37,7 +37,7 @@ fun ActivityLevelScreen(
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
-                is UiEvent.Navigate -> onNavigate(event)
+                is UiEvent.Navigate -> onNextClick()
                 else -> Unit
             }
         }

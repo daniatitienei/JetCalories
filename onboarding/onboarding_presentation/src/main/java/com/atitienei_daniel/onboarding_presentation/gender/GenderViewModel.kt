@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.atitienei_daniel.core.domain.data_store.UserDataStore
 import com.atitienei_daniel.core.domain.model.Gender
-import com.atitienei_daniel.core.navigation.Route
 import com.atitienei_daniel.core.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -33,7 +32,7 @@ class GenderViewModel @Inject constructor(
     fun onNextClick() {
         viewModelScope.launch {
             userDataStore.saveGender(gender = selectedGender)
-            _uiEvent.send(UiEvent.Navigate(route = Route.age))
+            _uiEvent.send(UiEvent.Navigate)
         }
     }
 }
