@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -50,41 +50,42 @@ fun TrackedFoodItem(
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .fillMaxHeight()
+                .height(100.dp)
                 .aspectRatio(1f)
-                .clip(RoundedCornerShape(topStart = 5.dp, bottomStart = 5.dp))
+                .clip(RoundedCornerShape(topStart = 10.dp, bottomStart = 10.dp))
         )
         Spacer(modifier = Modifier.width(spacing.spaceMedium))
         Column(
             modifier = Modifier.weight(1f)
         ) {
-            Text(
-                text = food.name,
-                style = MaterialTheme.typography.titleMedium,
-                overflow = TextOverflow.Ellipsis,
-                maxLines = 2
-            )
+            Row(
+                verticalAlignment = Alignment.Top,
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = food.name,
+                    style = MaterialTheme.typography.titleMedium,
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 2
+                )
+                Icon(
+                    imageVector = Icons.Rounded.Close,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .clickable {
+                            onDeleteClick()
+                        }
+                )
+
+            }
             Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
             Text(text = "${food.amount}g - ${food.calories}kcal")
-        }
-        Spacer(modifier = Modifier.height(spacing.spaceMedium))
-        Column(
-            modifier = Modifier.fillMaxHeight(),
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
-            Icon(
-                imageVector = Icons.Rounded.Close,
-                contentDescription = null,
-                modifier = Modifier
-                    .align(Alignment.End)
-                    .clickable {
-                        onDeleteClick()
-                    }
-            )
-            Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
+            Spacer(modifier = Modifier.height(spacing.spaceMedium))
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.SpaceAround,
+                modifier = Modifier.fillMaxWidth()
             ) {
                 NutrientInfo(
                     name = "Carbs",

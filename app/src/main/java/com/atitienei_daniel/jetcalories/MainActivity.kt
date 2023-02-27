@@ -1,11 +1,17 @@
 package com.atitienei_daniel.jetcalories
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.atitienei_daniel.core.domain.data_store.UserDataStore
 import com.atitienei_daniel.core.navigation.Route
 import com.atitienei_daniel.jetcalories.navigation.navigate
 import com.atitienei_daniel.jetcalories.ui.theme.JetCaloriesTheme
@@ -20,15 +26,29 @@ import com.atitienei_daniel.onboarding_presentation.welcome.WelcomeScreen
 import com.atitienei_daniel.tracker_presentation.overview.TrackerOverviewScreen
 import com.atitienei_daniel.tracker_presentation.search.SearchScreen
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var userDataStore: UserDataStore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         setContent {
+            val shouldShowOnboarding by
+                userDataStore.loadShouldShowOnBoarding().collectAsState(initial = true)
+
             JetCaloriesTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = Route.trackerOverview) {
+
+                NavHost(
+                    navController = navController,
+                    startDestination = if (shouldShowOnboarding) Route.welcome else Route.trackerOverview
+                ) {
                     composable(Route.welcome) {
                         WelcomeScreen(onNavigate = navController::navigate)
                     }
@@ -52,11 +72,30 @@ class MainActivity : ComponentActivity() {
                     }
                     composable(
                         route = Route.search,
+                        arguments = listOf(
+                            navArgument("mealName") {
+                                type = NavType.StringType
+                            },
+                            navArgument("dayOfMonth") {
+                                type = NavType.IntType
+                            },
+                            navArgument("month") {
+                                type = NavType.IntType
+                            },
+                            navArgument("year") {
+                                type = NavType.IntType
+                            },
+                        )
                     ) { backStackEntry ->
                         val mealName = backStackEntry.arguments?.getString("mealName")!!
-                        val dayOfMonth = backStackEntry.arguments?.getInt("dayOfMonth")!! + 1
-                        val month = backStackEntry.arguments?.getInt("month")!! + 1
+                        val dayOfMonth = backStackEntry.arguments?.getInt("dayOfMonth")!!
+                        val month = backStackEntry.arguments?.getInt("month")!!
                         val year = backStackEntry.arguments?.getInt("year")!!
+
+                        Log.d(
+                            "searchTerms",
+                            "dayOfMonth: $dayOfMonth\nmonth: $month\nyear: $year\nmealName: $mealName"
+                        )
 
                         SearchScreen(
                             mealName = mealName,

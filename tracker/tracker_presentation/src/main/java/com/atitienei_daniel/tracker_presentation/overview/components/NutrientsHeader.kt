@@ -20,7 +20,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.atitienei_daniel.core_ui.CarbColor
+import com.atitienei_daniel.core_ui.FatColor
 import com.atitienei_daniel.core_ui.LocalSpacing
+import com.atitienei_daniel.core_ui.ProteinColor
 import com.atitienei_daniel.tracker_presentation.components.UnitDisplay
 import com.atitienei_daniel.tracker_presentation.overview.TrackerOverviewState
 
@@ -95,21 +98,21 @@ fun NutrientsHeader(
                 value = state.totalCarbs,
                 goal = state.carbsGoal,
                 name = "Carbs",
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = CarbColor,
                 modifier = Modifier.size(90.dp)
             )
             NutrientBarInfo(
                 value = state.totalProtein,
                 goal = state.proteinGoal,
                 name = "Protein",
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = ProteinColor,
                 modifier = Modifier.size(90.dp)
             )
             NutrientBarInfo(
                 value = state.totalFat,
                 goal = state.fatGoal,
                 name = "Fat",
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = FatColor,
                 modifier = Modifier.size(90.dp)
             )
         }
