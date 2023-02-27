@@ -54,8 +54,8 @@ class MainActivity : ComponentActivity() {
                         route = Route.search,
                     ) { backStackEntry ->
                         val mealName = backStackEntry.arguments?.getString("mealName")!!
-                        val dayOfMonth = backStackEntry.arguments?.getInt("dayOfMonth")!!
-                        val month = backStackEntry.arguments?.getInt("month")!!
+                        val dayOfMonth = backStackEntry.arguments?.getInt("dayOfMonth")!! + 1
+                        val month = backStackEntry.arguments?.getInt("month")!! + 1
                         val year = backStackEntry.arguments?.getInt("year")!!
 
                         SearchScreen(
