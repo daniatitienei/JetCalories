@@ -150,7 +150,7 @@ class MainActivity : ComponentActivity() {
                     composable(Route.weight) {
                         WeightScreen(
                             onNextClick = {
-                                navController.navigate(Route.height)
+                                navController.navigate(Route.activityLevel)
                             }
                         )
                     }
