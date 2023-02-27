@@ -31,7 +31,7 @@ class SearchViewModel @Inject constructor(
             is SearchEvent.OnQueryChange -> {
                 _uiState.update { state ->
                     state.copy(
-                        query = event.query
+                        query = event.query,
                     )
                 }
             }
@@ -75,7 +75,8 @@ class SearchViewModel @Inject constructor(
         viewModelScope.launch {
             _uiState.update { state ->
                 state.copy(
-                    trackableFood = emptyList()
+                    trackableFood = emptyList(),
+                    isSearching = true
                 )
             }
             trackerUseCases
@@ -86,7 +87,7 @@ class SearchViewModel @Inject constructor(
                             trackableFood = foods.map {
                                 TrackableFoodUiState(it)
                             },
-                            query = ""
+                            isSearching = false,
                         )
                     }
                 }
@@ -102,7 +103,7 @@ class SearchViewModel @Inject constructor(
 
     private fun trackFood(event: SearchEvent.OnTrackFoodClick) {
         viewModelScope.launch {
-            val uiState = _uiState.value.trackableFood.find { it.food == event.food }
+            val uiState = _uiState.value.trackableFood.find { it.food.name == event.food.name }
             trackerUseCases.trackFood.execute(
                 food = uiState?.food ?: return@launch,
                 amount = uiState.amount.toIntOrNull() ?: return@launch,
