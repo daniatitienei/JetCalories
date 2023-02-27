@@ -45,10 +45,10 @@ class TrackerOverviewViewModel @Inject constructor(
                     _uiEvent.send(
                         UiEvent.Navigate(
                             route = Route.search
-                                    + "/${event.meal.mealType.name}"
-                                    + "/${_uiState.value.date.dayOfMonth}"
-                                    + "/${_uiState.value.date.month}"
-                                    + "/${_uiState.value.date.year}"
+                                .replace("{mealName}", event.meal.mealType.name)
+                                .replace("{dayOfMonth}", _uiState.value.date.dayOfMonth.toString())
+                                .replace("{month}", _uiState.value.date.month.toString())
+                                .replace("{year}", _uiState.value.date.year.toString())
                         )
                     )
                 }
