@@ -2,11 +2,6 @@
 
 This is a **Calorie Tracker app** built with Jetpack Compose.
 
-![1](https://user-images.githubusercontent.com/62098466/221618723-7ebeee8f-e69f-4a8c-b076-4577bb183a62.jpg)
-![2](https://user-images.githubusercontent.com/62098466/221618729-b1f79ce2-598e-4e45-8251-72080caa96ef.jpg)
-![3](https://user-images.githubusercontent.com/62098466/221618733-22d69d2b-274c-4311-a64a-45e651884bef.jpg)
-![4](https://user-images.githubusercontent.com/62098466/221618736-e580ec22-b4fa-4f3d-bf8f-3186d27c7e76.jpg)
-
 ## 🛠 Tech Sacks & Open Source Libraries
 
 ---
@@ -22,3 +17,8 @@ This is a **Calorie Tracker app** built with Jetpack Compose.
     - [DataStore](https://developer.android.com/topic/libraries/architecture/datastore): Data storage solution that allows you to store key-value pairs or typed objects with protocol buffers
 - [accompanist](https://github.com/google/accompanist): A collection of extension libraries for Jetpack Compose.
 - [moshi](https://github.com/square/moshi.git): A modern JSON library for Kotlin and Java
+
+![1](https://user-images.githubusercontent.com/62098466/221618723-7ebeee8f-e69f-4a8c-b076-4577bb183a62.jpg)
+![2](https://user-images.githubusercontent.com/62098466/221618729-b1f79ce2-598e-4e45-8251-72080caa96ef.jpg)
+![3](https://user-images.githubusercontent.com/62098466/221618733-22d69d2b-274c-4311-a64a-45e651884bef.jpg)
+![4](https://user-images.githubusercontent.com/62098466/221618736-e580ec22-b4fa-4f3d-bf8f-3186d27c7e76.jpg)
