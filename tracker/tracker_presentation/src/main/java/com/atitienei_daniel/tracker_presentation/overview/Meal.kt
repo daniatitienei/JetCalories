@@ -15,7 +15,7 @@ data class Meal(
 val defaultMeals = listOf(
     Meal(
         name = "Breakfast",
-        mealType = MealType.BreakFast
+        mealType = MealType.Breakfast
     ),
     Meal(
         name = "Lunch",

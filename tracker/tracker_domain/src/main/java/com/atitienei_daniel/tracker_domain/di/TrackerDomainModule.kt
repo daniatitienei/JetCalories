@@ -29,6 +29,6 @@ object TrackerDomainModule {
             deleteTrackedFood = DeleteTrackedFood(repository),
             trackFood = TrackFood(repository),
             getFoodsForDate = GetFoodsForDate(repository),
-            calculateMealNutrients = CalculateMealNutrients()
+            calculateMealNutrients = CalculateMealNutrients(dataStore)
         )
 }

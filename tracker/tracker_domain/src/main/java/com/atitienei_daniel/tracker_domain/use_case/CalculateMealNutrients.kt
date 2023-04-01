@@ -1,18 +1,19 @@
 package com.atitienei_daniel.tracker_domain.use_case
 
+import com.atitienei_daniel.core.domain.data_store.UserDataStore
 import com.atitienei_daniel.core.domain.model.ActivityLevel
 import com.atitienei_daniel.core.domain.model.Gender
 import com.atitienei_daniel.core.domain.model.GoalType
 import com.atitienei_daniel.core.domain.model.UserInfo
 import com.atitienei_daniel.tracker_domain.model.MealType
 import com.atitienei_daniel.tracker_domain.model.TrackedFood
+import kotlinx.coroutines.flow.first
 import kotlin.math.roundToInt
 
 class CalculateMealNutrients(
-
+    private val userDataStore: UserDataStore
 ) {
-
-    suspend fun execute(trackedFoods: List<TrackedFood>, userInfo: UserInfo): Result {
+    suspend fun execute(trackedFoods: List<TrackedFood>): Result {
         val allNutrients = trackedFoods
             .groupBy { it.mealType }
             .mapValues { entry ->
@@ -31,6 +32,8 @@ class CalculateMealNutrients(
         val totalProtein = allNutrients.values.sumOf { it.protein }
         val totalFat = allNutrients.values.sumOf { it.fat }
         val totalCalories = allNutrients.values.sumOf { it.calories }
+
+        val userInfo = userDataStore.loadUserInfo().first()
 
         val calorieGoal = dailyCalorieRequirement(userInfo)
         val carbsGoal = (calorieGoal * userInfo.carbRatio / 4f).roundToInt()
