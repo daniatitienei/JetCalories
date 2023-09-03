@@ -1,5 +1,5 @@
 object Build {
-    const val androidVersion = "8.1.0-alpha06"
+    const val androidVersion = "8.1.1"
 
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.10"
 
